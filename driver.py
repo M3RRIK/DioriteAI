@@ -57,13 +57,14 @@ def speaking(text):
     stream(audio_stream)
 print("VTT Assistant Ready. Speak into your mic.")
 while True:
-    with sr.Microphone() as source:
-        print("\nListening...")
-        recognizer.adjust_for_ambient_noise(source, duration=0.5)
-        audio = recognizer.listen(source, timeout=1, phrase_time_limit=5)
-
-
     try:
+        with sr.Microphone(device_index=1) as source:
+            print("\nListening...")
+            recognizer.adjust_for_ambient_noise(source, duration=0.5)
+            audio = recognizer.listen(source, timeout=5, phrase_time_limit=8)
+
+
+        
         text = recognizer.recognize_google(audio)
         print(f" You said: {text}")
 
@@ -78,6 +79,8 @@ while True:
         print(f"API error: {e}")
     except Exception as e:
         print(f"Unexpected error: {e}")
+    except openai.RateLimitError as e:
+        print("OpenAI quota/billing issue. Check your API credits or billing.")
 
 
     time.sleep(1)
