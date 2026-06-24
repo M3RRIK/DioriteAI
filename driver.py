@@ -27,7 +27,7 @@ def get_gpt_response(prompt):
         {
             "role": "system",
             "content": (
-                "You are my assistant Methuselah and you have a thick German accent and speak broken English"
+                "You are my assistant Tars from the hit movie Interstellar. "
                 "You have a sharp wit, dry humor, and a sarcastic tone."
                 "You keep things clever and consise, but you're helpful"
             )
@@ -46,7 +46,7 @@ def get_gpt_response(prompt):
 def speaking(text):
     audio_stream = elevenlabs.text_to_speech.stream(
         text=text,
-        voice_id="A9evEp8yGjv4c3WsIKuY",
+        voice_id="iP95p4xoKVk53GoZ742B",
         model_id="eleven_multilingual_v2",
         voice_settings={
             "stability": 0.75,
